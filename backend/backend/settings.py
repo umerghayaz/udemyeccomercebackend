@@ -39,9 +39,11 @@ INSTALLED_APPS = [
     "django.contrib.staticfiles",
     "base.apps.BaseConfig",
     'rest_framework',
+    'corsheaders'
 ]
 
 MIDDLEWARE = [
+    "corsheaders.middleware.CorsMiddleware",
     "django.middleware.security.SecurityMiddleware",
     "django.contrib.sessions.middleware.SessionMiddleware",
     "django.middleware.common.CommonMiddleware",
@@ -113,12 +115,19 @@ USE_I18N = True
 
 USE_TZ = True
 
+STATIC_URL = '/static/'
+MEDIA_URL = '/images/'
 
+STATICFILES_DIRS = [
+    BASE_DIR / 'static',
+    BASE_DIR / 'frontend/build/static'
+]
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/4.1/howto/static-files/
 
-STATIC_URL = "static/"
-
+MEDIA_ROOT = BASE_DIR / 'static/images'
+STATIC_ROOT = BASE_DIR / 'staticfiles'
+CORS_ALLOW_ALL_ORIGINS=True
 # Default primary key field type
 # https://docs.djangoproject.com/en/4.1/ref/settings/#default-auto-field
 
